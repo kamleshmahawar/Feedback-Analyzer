@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Feeback Analyser</title>
+      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+      <link rel='shortcut icon' type='image/x-icon' href='/img/user.jpg' />
+      <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css"/>
+      <link rel="stylesheet" href="./css/AdminLTE.min.css"/>
+      <link rel="stylesheet" href="./css/_all-skins.min.css"/>
+      <link rel="stylesheet" href="./css/style.css"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+   </head>
+   <body class="hold-transition skin-blue sidebar-mini">
+      <div class="wrapper">
+         <header class="main-header">
+            <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>DCA</b></span>
+            <span class="logo-lg"><b>DCA </b>BRAVO</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+               <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+               <span class="sr-only">Toggle navigation</span>
+               </a>
+               <div class="navbar-custom-menu">
+                  <ul class="nav navbar-nav">
+                     <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="img/user.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Kamlesh Mahawar</span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </header>
+         <aside class="main-sidebar">
+            <section class="sidebar">
+               <div class="user-panel">
+                  <div class="pull-left image">
+                     <img src="img/user.jpg" class="img-circle" alt="User Image">
+                  </div>
+                  <div class="pull-left info">
+                     <p>Kamlesh Mahawar</p>
+                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                  </div>
+               </div>
+               <ul class="sidebar-menu" data-widget="tree">
+                  <li class="header">MAIN NAVIGATION</li>
+                  <li class="active treeview" id="dashboard-menu">
+                     <a href="#">
+                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                     </a>
+                  </li>
+                  <li class="treeview" id="details-menu">
+                     <a href="#">
+                     <i class="fa fa-pie-chart"></i>
+                     <span>Details</span>
+                     </a>
+                  </li>
+               </ul>
+            </section>
+         </aside>
+         <div class="content-wrapper" id="dashboard">
+            <section class="content-header">
+               <h1>
+                  Dashboard
+               </h1>
+               <div class="breadcrumb">
+                  <button class="btn btn-primary" id="refresh">refresh</button>
+               </div>
+            </section>
+            <section class="content">
+               <div class="row">
+                  <div class="col-lg-4 col-xs-6">
+                     <div class="small-box bg-red">
+                        <div class="inner">
+                           <h3 id="Problems">...</h3>
+                           <p>Problems Added</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                     <div class="small-box bg-yellow">
+                        <div class="inner">
+                           <h3 id="Suggestions">...</h3>
+                           <p>Suggestions Received</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                     <div class="small-box bg-green">
+                        <div class="inner">
+                           <h3 id="Commets">...</h3>
+                           <p>Compliments Received</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <section class="content">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="box box-danger">
+                           <div class="box-header with-border">
+                              <h3 class="box-title">Ratings</h3>
+                              <div class="box-tools pull-right">
+                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                 </button>
+                              </div>
+                           </div>
+                           <div class="box-body">
+                              <div id="pieChart" style="height:300px"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="box box-success">
+                           <div class="box-header with-border">
+                              <h3 class="box-title">Features v/s Rating</h3>
+                              <div class="box-tools pull-right">
+                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                 </button>
+                              </div>
+                           </div>
+                           <div class="box-body">
+                              <div class="chart">
+                                 <div id="barChart" style="height:300px"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+               <div class="row">
+                  <section class="col-lg-12 connectedSortable">
+                     <div class="box box-success">
+                        <div class="box-header">
+                           <i class="fa fa-comments-o"></i>
+                           <h3 class="box-title">Trending Feedbacks</h3>
+                        </div>
+                        <div class="box-body chat" id="chat-box" style="height:300px; overflow:hidden;">
+                           <div id= "feeds"></div>
+                        </div>
+                        <div class="box-footer">
+                        </div>
+                     </div>
+                  </section>
+               </div>
+            </section>
+         </div>
+         <div class="content-wrapper" id="details" hidden>
+            <section class="content-header">
+               <h1>
+                  Details
+               </h1>
+            </section>
+            <section class="content">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="box box-success">
+                        <div class="box-body">
+                           <table class="table table-striped">
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Customer Name</th>
+                                    <th>Entity Name</th>
+                                    <th>Ratings</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </div>
+      <script src="./js/jquery.min.js"></script>
+      <script src="./js/bootstrap.min.js"></script>
+      <script src="./js/highcharts.js"></script>
+      <script src="./js/adminlte.min.js"></script>
+      <script>
+         (function() {
+           const rating = ['Great', 'Good', 'Ok', 'Bad', 'Terrible'];
+           const colors = ['#00873D', '#00C781', '#FFAA15', '#A2423D', '#FF4040'];
+           function init() {
+             $("#dashboard-menu").click(function(){
+               $("#dashboard").show();
+               $("#details").hide();
+               $("#details-menu").removeClass('active');
+               $("#dashboard-menu").addClass('active');
+             });
+             $("#details-menu").click(function(){
+               $("#dashboard").hide();
+               $("#details").show();
+               $("#details-menu").addClass('active');
+               $("#dashboard-menu").removeClass('active');
+             });
+             fetchData();
+             $("#refresh").click(fetchData);
+             $('#feeds').hover(function(e){
+                $(this).stop();
+             })
+           }
+         
+           function createDashboard(data) {
+             $('#Commets').html(data.feedbackTypeCounts.Compliments);
+             $('#Problems').html(data.feedbackTypeCounts.Problems);
+             $('#Suggestions').html(data.feedbackTypeCounts.Suggestions);
+         
+             let pieData = [];
+             for(let key in data.pieData) {
+               if(key !== 'total'){
+                pieData.push({
+                    name: rating[key*1 - 1],
+                    y: data.pieData[key]
+                });
+               }
+             }
+            Highcharts.chart('pieChart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                colors : colors,
+                title: {
+                    text: ''
+                },
+                credits: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                          enabled: true,
+                          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                          connectorColor: 'silver'
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                  name: 'Rating',
+                  colorByPoint: true,
+                  data: pieData,
+                }]
+            });
+            
+            var barChartLabel = ['Dashboard', 'Author', 'Resource_Management', 'Settings', 'Jobs'];
+            var barchartData = [{
+                    name: 'Great',
+                    data: [0, 0 ,0, 0, 0]
+                }, {
+                    name:  'Good',
+                    data: [0, 0 ,0, 0, 0]
+                },{
+                    name:  'Ok',
+                    data: [0, 0 ,0, 0, 0]
+                },{
+                    name:  'Bad',
+                    data: [0, 0 ,0, 0, 0]
+                }, {
+                    name: 'Terrible',
+                    data: [0, 0 ,0, 0, 0]
+                }];
+
+            barChartLabel.forEach(function(item, index){
+                var a = data.entityFeedbacks[item];
+                for(let i in a) {
+                barchartData[i-1].data[index] = a[i]
+                }
+            });
+            Highcharts.chart('barChart', {
+                chart: {
+                    type: 'column'
+                },
+                credits: {
+                    enabled: false
+                },
+                colors,
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: barChartLabel
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Number of Customers'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: ( // theme
+                                Highcharts.defaultOptions.title.style &&
+                                Highcharts.defaultOptions.title.style.color
+                            ) || 'gray'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: 'Customers: {point.y}'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                },
+                series: barchartData,
+            });
+         
+            let feeds = '';
+          data.feeds.forEach((item) => {
+            let name="", comment = "";
+            item = item.split(':');
+            name = item[0];
+            comment = item[1];
+            var feed = `<div class="item">
+              <img src="img/${name}.jpg" alt="user image" class="offline">
+              <p class="message">
+                  <a href="#" class="name">
+                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                  ${name}
+                  </a>
+                  ${comment}
+              </p>
+            </div>`;
+            feeds += feed;
+          })
+          $("#feeds").html(feeds);
+         
+          }
+         
+          function createTableData(data) {
+            var tableData = '';
+            for(let key in data) {
+              let item = data[key];
+              tableData += `<tr>
+                  <td><img src="img/${item.Customer_Name}.jpg" alt="user image" class="offline"></td>
+                              <td>${item.Customer_Name}</td>
+                              <td>${item.Entity.name}</td>
+                              <td style="color: ${colors[item.Entity.rating-1]}">${rating[item.Entity.rating-1]}</td>
+                            </tr>`;
+             }
+            $('tbody').html(tableData);
+          }
+          function fetchData() {
+            $.ajax({url: "http://localhost:8010/urest/v1/hackfest/dashboard_data", success: function(data){
+              createDashboard(data)
+            }});
+            $.ajax({url: "http://localhost:8010/urest/v1/hackfest/details", success: function(data){
+              createTableData(data)
+            }});
+           }
+           init();
+         })();
+      </script>
+   </body>
+</html>

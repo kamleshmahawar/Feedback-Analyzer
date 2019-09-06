@@ -1,0 +1,33 @@
+.skin-blue .content-header {
+    margin-bottom: 10px;
+}
+.chat{
+    position: relative;
+}
+.chat #feeds{
+  display: block;
+  position: absolute;
+  width: 95%;
+  overflow: hidden;
+  animation: marquee 5s linear infinite;
+}
+.chat #feeds:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { top: 50%; }
+  100% { top: -100%; }
+}
+
+
+tbody img {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+        border: 2px solid #dd4b39;
+}
+td{
+    text-transform: uppercase;
+}
